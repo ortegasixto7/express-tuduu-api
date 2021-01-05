@@ -1,0 +1,33 @@
+{
+  "name": "express-tuduu-api",
+  "version": "1.0.0",
+  "description": "Express api with MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ortegasixto7/express-tuduu-api.git"
+  },
+  "keywords": [],
+  "author": "Sixto Ortega",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ortegasixto7/express-tuduu-api/issues"
+  },
+  "type": "module",
+  "homepage": "https://github.com/ortegasixto7/express-tuduu-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
