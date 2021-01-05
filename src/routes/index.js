@@ -25,9 +25,10 @@
 import express from 'express';
 const app = express();
 
-import { signUp } from '../core/users/controllers/user.controller.js';
+import { signUp, signIn } from '../core/users/controllers/user.controller.js';
 
 // Auth
 app.post('/api/auth/signup', signUp);
+app.post('/api/auth/signin', signIn);
 
 export default app;

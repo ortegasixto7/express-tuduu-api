@@ -2,16 +2,6 @@ import User from '../models/user.model.js';
 import bcrypt from 'bcrypt';
 import { success, error, logError } from '../../../utils/response.js';
 
-async function getAll(req, res) {
-  try {
-    const result = await User.find();
-    success(result, '', res);
-  } catch (err) {
-    logError('users.getAll', err.message);
-    error(500, 'Some error occurred while trying to get the users!', res);
-  }
-}
-
 async function get(req, res) {
   try {
     const result = await User.findById(req.params.id);
@@ -50,7 +40,7 @@ export const signUp = async (req, res) => {
     await user.save();
     return success([], 'User created successfully', res);
   } catch (err) {
-    logError('users.signUp', err.message);
+    logError('auth.signUp', err.message);
     return error(500, 'Some error occurred while trying to create the user!', res);
   }
 };
@@ -73,35 +63,19 @@ async function update(req, res) {
   }
 }
 
-async function remove(req, res) {
+export const signIn = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (user === null) {
-      error(404, 'User does not exists!', res);
-    } else {
-      await User.deleteOne({ _id: req.params.id });
-      success([], 'User removed successfully', res);
-    }
-  } catch (err) {
-    logError('users.remove', err.message);
-    error(500, 'Some error occurred while trying to delete the user!', res);
-  }
-}
+    if (!req.body.username) return error(400, 'Invalid username', res);
+    if (!req.body.password) return error(400, 'Invalid password', res);
 
-async function login(req, res) {
-  try {
     const user = await User.findOne({ username: req.body.username });
-    if (user == null) {
-      error(404, 'Username or password invalid!', res);
-    } else {
-      if (bcrypt.compareSync(req.body.password, user.password)) {
-        success([], 'Login Ok', res);
-      } else {
-        error(404, 'Username or password invalid!', res);
-      }
-    }
+
+    if (!user) return error(404, 'Username or password invalid!', res);
+    if (!bcrypt.compareSync(req.body.password, user.password)) return error(404, 'Username or password invalid!', res);
+
+    return success([], 'Login Ok', res);
   } catch (err) {
-    logError('users.login', err.message);
-    error(500, 'Some error occurred while trying login the user!', res);
+    logError('auth.signIn', err.message);
+    return error(500, 'Some error occurred while trying login the user!', res);
   }
-}
+};
