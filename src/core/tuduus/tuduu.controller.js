@@ -41,17 +41,17 @@ export const updateTuduu = async (req, res) => {
   }
 };
 
-// export const deleteTuduu = async (req, res) => {
-//   if (!req.params.id) return error(400, 'Invalid id', res);
+export const deleteTuduu = async (req, res) => {
+  if (!req.params.id) return error(400, 'Invalid id', res);
 
-//   try {
-//     const tuduu = await Tuduu.findById(req.params.id);
-//     if (!tuduu) return error(404, 'Tuduu does not exists!', res);
+  try {
+    const tuduu = await Tuduu.findById(req.params.id);
+    if (!tuduu) return error(404, 'Tuduu does not exists!', res);
 
-//     await Tuduu.deleteOne({ _id: req.params.id });
-//     return success([], 'Tuduu deleted successfully', res);
-//   } catch (err) {
-//     logError('tuduus.delete', err.message);
-//     return error(500, 'Some error occurred while trying to delete the tuduu!', res);
-//   }
-// };
+    await Tuduu.deleteOne({ _id: req.params.id });
+    return success([], 'Tuduu deleted successfully', res);
+  } catch (err) {
+    logError('tuduus.delete', err.message);
+    return error(500, 'Some error occurred while trying to delete the tuduu!', res);
+  }
+};
