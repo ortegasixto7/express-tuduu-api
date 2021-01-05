@@ -4,7 +4,8 @@
   "description": "Express api with MongoDB",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,7 @@
   "bugs": {
     "url": "https://github.com/ortegasixto7/express-tuduu-api/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/ortegasixto7/express-tuduu-api#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
