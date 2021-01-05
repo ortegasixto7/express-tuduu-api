@@ -1,6 +1,6 @@
-import User from '../models/user.model.js';
+import User from './user.model.js';
 import bcrypt from 'bcrypt';
-import { success, error, logError } from '../../../utils/response.js';
+import { success, error, logError } from '../../utils/response.js';
 
 export const signUp = async (req, res) => {
   if (!req.body.firstName) return error(400, 'Invalid firstName', res);
