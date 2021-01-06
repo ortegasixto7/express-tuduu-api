@@ -15,6 +15,6 @@ connectDatabase(process.env.MONGODB_URL);
 
 // router
 app.use(routes);
-app.listen(process.env.API_PORT, () => {
-  console.log(`[API] listening on port ${process.env.API_PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`[API] listening on port ${process.env.PORT}`);
 });
